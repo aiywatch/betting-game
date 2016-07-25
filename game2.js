@@ -1,8 +1,9 @@
 bankroll = 100;
+restart_btn = '<button id="restart">RESTART</button>'
 
 function result(user_n, rand_n, bet){
   if(user_n == rand_n){
-    bankroll += bet;
+    bankroll += parseInt(bet);
     return "correct!";
   } else if (user_n == rand_n + 1 || user_n == rand_n - 1)
     return "almost!";
@@ -28,6 +29,14 @@ $(document).ready(function(){
 
     $("#bankroll").text(bankroll);
 
+    if(bankroll <= 0){
+      $('#regame').html(restart_btn);
+      $('#game').fadeOut();
+    }
+  });
+
+  $('#regame').click('button', function(){
+    location.reload();
   });
 
 });
